@@ -132,6 +132,7 @@ body {
   opacity: 0.18;
   animation: float 8s ease-in-out infinite;
 }
+/*This is so that the leaf moves slightly*/
 .leaf--1 { top: 12%; right: 15%; animation-delay: 0s;   font-size: clamp(2rem, 4vw, 4.5rem); }
 .leaf--2 { top: 55%; right: 8%;  animation-delay: 1.5s; font-size: clamp(1.2rem, 2.5vw, 3rem); }
 .leaf--3 { top: 30%; right: 35%; animation-delay: 3s;   opacity: 0.10; }
