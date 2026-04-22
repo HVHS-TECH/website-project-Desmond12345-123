@@ -1,64 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wellington RSVP</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wellington Park Reviews</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="Arial" rel="stylesheet" />
 </head>
 <body>
 
-    <nav>
-        <div class="nav-logo">
-            <h2>RSVP</h2>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="Venues.html">Venues</a></li>
-            <li><a href="Gallery.html">Gallery</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-            <li><a href="About_us.html">About Us</a></li>
-        </ul>
-    </nav>
-
-    <div class="grid-container">
-
-        <div class="hero">
-            <img src="Frontpage.png" alt="Wedding Venue">
-            <div class="overlay-text">
-                <h1>Wellington RSVP</h1>
-                <p>Join us for our special day</p>
-            </div>
-        </div>
-
-        <div class="title-section">
-            <h2>Welcome to Our Wedding</h2>
-            <p>We are so excited to celebrate with you</p>
-        </div>
-
-        <div class="cards-section">
-
-            <div class="card">
-                <img src="Frontpage.png" alt="Venue 1">
-                <h3>Venue</h3>
-                <p>Beautiful wedding venue in Wellington</p>
-            </div>
-
-            <div class="card">
-                <img src="Frontpage.png" alt="Gallery">
-                <h3>Gallery</h3>
-                <p>View photos from our journey together</p>
-            </div>
-
-            <div class="card">
-                <img src="Frontpage.png" alt="RSVP">
-                <h3>RSVP</h3>
-                <p>Let us know if you can make it</p>
-            </div>
-
-        </div>
-
+  <header class="hero">
+    <div class="hero__noise"></div>
+    <div class="hero__content">
+      <span class="hero__eyebrow">Pōneke · Wellington</span>
+      <h1 class="hero__title">Wellintgon<br><em>Parks</em></h1>
+      <p class="hero__subtitle">Five parks. Five stories. One remarkable city.</p>
+      <a href="#parks" class="hero__cta">Explore the Parks ↓</a>
     </div>
+    <div class="hero__leaves" aria-hidden="true">
+      <span class="leaf leaf--1">🌿</span>
+      <span class="leaf leaf--2">🍃</span>
+      <span class="leaf leaf--3">🌿</span>
+      <span class="leaf leaf--4">🍃</span>
+      <span class="leaf leaf--5">🌿</span>
+    </div>
+  </header>
+
+  <section class="intro-strip">
+    <p>Wellington's parks weave native bush, coastal views and quiet lawns into the fabric of the city. Whether you're after a brisk hill walk or a Sunday picnic, there's a green corner with your name on it.</p>
+  </section>
+
+  <main id="parks" class="parks-grid">
+
+    <article class="park-card" style="--accent:#4a7c59;">
+      <div class="park-card__header">
+        <span class="park-card__number">01</span>
+        <div class="park-card__badge">Bush Walk</div>
+      </div>
+      <h2 class="park-card__name">Khandallah<br>Park</h2>
+      <div class="park-card__stars" aria-label="4.5 out of 5 stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star half">★</span>
+        <span class="rating-num">4.5</span>
+      </div>
+      <p class="park-card__review">
+        Tucked behind the quiet suburb of Khandallah, this park is a true hidden gem. Dense native bush envelops a network of winding trails that reward you with glimpses of tūī, kererū and the distant harbour. The air smells of damp earth and kawakawa — a full sensory reset from the city below. Families love the playground near the entrance, while serious walkers can push further into the ridge for sweeping panoramas. Well-maintained paths and clear signage make navigation easy even for newcomers.
+      </p>
+      <ul class="park-card__tags">
+        <li>Native Bush</li>
+        <li>Birdlife</li>
+        <li>Playground</li>
+        <li>Dog Friendly</li>
+      </ul>
+    </article>
+
+    <article class="park-card park-card--dark" style="--accent:#c8a951;">
+      <div class="park-card__header">
+        <span class="park-card__number">02</span>
+        <div class="park-card__badge">Regional</div>
+      </div>
+      <h2 class="park-card__name">Belmont<br>Regional Park</h2>
+      <div class="park-card__stars" aria-label="4.8 out of 5 stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span>
+        <span class="rating-num">4.8</span>
+      </div>
+      <p class="park-card__review">
+        Belmont is Wellington's great outdoor playground — vast, wild and endlessly varied. Stretching from the Hutt Valley foothills to the Porirua Harbour, it offers everything from gentle family strolls to challenging ridge routes with breathtaking views across Cook Strait. Mountain bikers, horse riders and trampers all coexist happily on its extensive trail network. The open tussock ridgelines feel genuinely remote, yet you're only minutes from suburbia. Pack a lunch, bring layers, and prepare to be surprised by just how big and beautiful it really is.
+      </p>
+      <ul class="park-card__tags">
+        <li>Mountain Biking</li>
+        <li>Panoramic Views</li>
+        <li>Tramping</li>
+      </ul>
+    </article>
+
+    <article class="park-card" style="--accent:#3b7fa6;">
+      <div class="park-card__header">
+        <span class="park-card__number">03</span>
+        <div class="park-card__badge">Community</div>
+      </div>
+      <h2 class="park-card__name">Kilbirnie<br>Park</h2>
+      <div class="park-card__stars" aria-label="4.0 out of 5 stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span>
+        <span class="rating-num">4.0</span>
+      </div>
+      <p class="park-card__review">
+        Kilbirnie Park is the beating heart of the eastern suburbs — spacious, welcoming and almost always buzzing with activity. Wide open grass fields host weekend football matches and cricket games, while the skate park draws a loyal crowd of riders from dawn to dusk. The recently upgraded play area is a big hit with little ones, and the proximity to the Evans Bay waterfront means a seaside stroll is always just moments away. It's unpretentious, practical and perfectly positioned — a park that truly serves its community day in, day out.
+      </p>
+      <ul class="park-card__tags">
+        <li>Sports Fields</li>
+        <li>Skate Park</li>
+        <li>Playground</li>
+        <li>Central Location</li>
+      </ul>
+    </article>
+
+    <article class="park-card park-card--wide" style="--accent:#7a5c8a;">
+      <div class="park-card__header">
+        <span class="park-card__number">04</span>
+        <div class="park-card__badge">Landmark</div>
+      </div>
+      <h2 class="park-card__name">Wellington<br>Botanic Gardens</h2>
+      <div class="park-card__stars" aria-label="4.9 out of 5 stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span>
+        <span class="rating-num">4.9</span>
+      </div>
+      <p class="park-card__review">
+        Few places in New Zealand can match the sheer beauty and diversity of Wellington's Botanic Gardens. Established in 1868, this 26-hectare hillside sanctuary flows from the formal rose garden — glorious in summer — through towering native bush, glasshouse collections and the beloved Duck Pond. The cable car drops you right at the top, making the downhill wander into the city one of Wellington's finest experiences. Every season brings something new: tulips in spring, roses in December, golden tones in autumn. A world-class garden hiding in plain sight.
+      </p>
+      <ul class="park-card__tags">
+        <li>Rose Garden</li>
+        <li>Cable Car Access</li>
+        <li>Native Bush</li>
+        <li>Glasshouses</li>
+        <li>Duck Pond</li>
+      </ul>
+    </article>
+
+    <article class="park-card" style="--accent:#b85c3a;">
+      <div class="park-card__header">
+        <span class="park-card__number">05</span>
+        <div class="park-card__badge">Family</div>
+      </div>
+      <h2 class="park-card__name">Avalon<br>Park</h2>
+      <div class="park-card__stars" aria-label="4.3 out of 5 stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star half">★</span>
+        <span class="rating-num">4.3</span>
+      </div>
+      <p class="park-card__review">
+        Avalon Park in Lower Hutt is a family favourite that punches well above its weight. The park's centrepiece is a wonderfully nostalgic train ride that has delighted generations of Wellington children — a must if you're visiting with little ones. Wide shaded lawns, barbecue areas and a well-equipped playground make it an ideal spot for a long lazy afternoon. The Hutt River runs nearby, adding a gentle soundtrack to picnics and afternoon naps. Weekends see it fill with families, kite-flyers and weekend athletes — a lively, joyful atmosphere that's hard not to love.
+      </p>
+      <ul class="park-card__tags">
+        <li>Train Ride</li>
+        <li>BBQ Areas</li>
+        <li>Riverside</li>
+        <li>Playground</li>
+      </ul>
+    </article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">Wellington <em>Wellintgon Parks</em></p>
+      <p class="site-footer__note">All reviews reflect personal experience and community feedback. Get out there and explore! 🌿</p>
+      <p>© Desmond Lin Reviews, 2026</p>
+    </div>
+  </footer>
+
 
 </body>
 </html>
