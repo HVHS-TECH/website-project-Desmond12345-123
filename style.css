@@ -654,7 +654,6 @@ body {
 .gallery-grid .gallery-card:nth-child(7) { animation: cardReveal 0.7s ease both; animation-delay: 0.7s; }
 .gallery-grid .gallery-card:nth-child(8) { animation: cardReveal 0.7s ease both; animation-delay: 0.8s; }
 
-
 @media (max-width: 900px) {
   .park-card--wide    { grid-column: span 1; }
   .gallery-card--wide { grid-column: span 1; }
@@ -664,7 +663,6 @@ body {
   .hero__content { padding: 4rem 1.5rem; }
   .gallery-hero  { padding: 3rem 1.5rem; }
 }
-
 @media (max-width: 600px) {
   :root { --nav-height: 56px; }
   .navbar { gap: 0.4rem; padding: 0 1rem; }
