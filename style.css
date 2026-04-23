@@ -1,3 +1,10 @@
+/* ══════════════════════════════════════════════════════
+   Wellington Green Escapes — style.css
+   Includes: Navbar, Hero, Parks Grid, Gallery, Footer
+   ══════════════════════════════════════════════════════ */
+
+
+/* ── SECTION 1: CSS VARIABLES ────────────────────────── */
 :root {
   --bg:         #f5f2eb;
   --bg-dark:    #1c2318;
@@ -5,16 +12,19 @@
   --ink-light:  #4a4a3a;
   --cream:      #faf8f2;
   --green:      #3a6344;
-  --green-pale: #e8f0e9;
   --gold:       #c8a951;
   --serif:      'Playfair Display', Georgia, serif;
   --sans:       'DM Sans', system-ui, sans-serif;
-  --radius:     4px;
-  --shadow:     0 4px 24px rgba(28,35,24,0.10);
-  --shadow-lg:  0 12px 48px rgba(28,35,24,0.16);
+  --nav-height: 64px;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── SECTION 2: RESET ────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html { scroll-behavior: smooth; }
 
@@ -25,42 +35,82 @@ body {
   font-size: 1rem;
   line-height: 1.7;
   overflow-x: hidden;
+  padding-top: var(--nav-height); /* push page below fixed navbar */
 }
 
-.hero {
-  position: relative;
-  min-height: 100svh;
+
+/* ══════════════════════════════════════════════════════
+   NAVBAR — fixed to top of every page
+   Oval/pill shaped buttons sit on the top left
+   ══════════════════════════════════════════════════════ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background: var(--bg-dark);
   display: flex;
   align-items: center;
-  background: var(--bg-dark);
-  overflow: hidden;
+  padding: 0 2rem;
+  gap: 0.75rem;
+  z-index: 999;
+  border-bottom: 2px solid var(--green);
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
+/* Site name / logo on the far left */
+.navbar__brand {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--gold);
+  text-decoration: none;
+  margin-right: 1rem;
+  white-space: nowrap;
+}
+
+/* Each oval pill navigation button */
+.navbar__link {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(240,236,224,0.75);
+  padding: 0.45rem 1.2rem;
+  border: 1.5px solid rgba(240,236,224,0.2);
+  border-radius: 100px;   /* makes the pill/oval shape */
+}
+
+/* Active page button — filled gold */
+.navbar__link--active {
+  background: var(--gold);
+  color: var(--bg-dark);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   HERO — big banner on index.html
+   ══════════════════════════════════════════════════════ */
+.hero {
+  min-height: calc(100svh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-image:
     radial-gradient(ellipse 80% 60% at 20% 60%, #2a4a2e 0%, transparent 60%),
     radial-gradient(ellipse 60% 80% at 80% 30%, #1a3320 0%, transparent 55%),
     radial-gradient(ellipse 100% 100% at 50% 50%, #141e10 0%, #0d1409 100%);
 }
 
-.hero__noise {
-  position: absolute;
-  inset: 0;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  pointer-events: none;
-}
-
 .hero__content {
-  position: relative;
-  z-index: 2;
-  padding: 6rem 2rem 6rem 10vw;
+  padding: 5rem 2rem 5rem 10vw;
   max-width: 700px;
-  animation: fadeUp 1s ease both;
 }
 
 .hero__eyebrow {
@@ -87,10 +137,7 @@ body {
   letter-spacing: -0.02em;
 }
 
-.hero__title em {
-  font-style: italic;
-  color: var(--gold);
-}
+.hero__title em { font-style: italic; color: var(--gold); }
 
 .hero__subtitle {
   font-size: 1.15rem;
@@ -111,34 +158,12 @@ body {
   padding: 0.9rem 2rem;
   border-radius: 100px;
   text-decoration: none;
-  transition: background 0.2s, transform 0.2s;
 }
 
-.hero__cta:hover {
-  background: #dbbf62;
-  transform: translateY(-2px);
-}
 
-.hero__leaves {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.leaf {
-  position: absolute;
-  font-size: clamp(1.5rem, 3vw, 3rem);
-  opacity: 0.18;
-  animation: float 8s ease-in-out infinite;
-}
-/*This is so that the leaf moves slightly*/
-.leaf--1 { top: 12%; right: 15%; animation-delay: 0s;   font-size: clamp(2rem, 4vw, 4.5rem); }
-.leaf--2 { top: 55%; right: 8%;  animation-delay: 1.5s; font-size: clamp(1.2rem, 2.5vw, 3rem); }
-.leaf--3 { top: 30%; right: 35%; animation-delay: 3s;   opacity: 0.10; }
-.leaf--4 { bottom: 15%; right: 25%; animation-delay: 0.8s; }
-.leaf--5 { top: 70%; right: 50%; animation-delay: 2.2s; opacity: 0.08; }
-
+/* ══════════════════════════════════════════════════════
+   INTRO STRIP
+   ══════════════════════════════════════════════════════ */
 .intro-strip {
   background: var(--green);
   color: rgba(255,255,255,0.88);
@@ -151,6 +176,10 @@ body {
 
 .intro-strip p { max-width: 75ch; }
 
+
+/* ══════════════════════════════════════════════════════
+   PARK REVIEW CARDS  (index.html)
+   ══════════════════════════════════════════════════════ */
 .parks-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -165,7 +194,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -176,17 +204,6 @@ body {
   top: 0; left: 0; right: 0;
   height: 4px;
   background: var(--accent, var(--green));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.park-card:hover::before { transform: scaleX(1); }
-
-.park-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  z-index: 1;
 }
 
 .park-card::after {
@@ -203,7 +220,6 @@ body {
   background: var(--bg-dark);
   color: #e8e4d8;
 }
-
 .park-card--dark .park-card__review { color: rgba(232,228,216,0.75); }
 .park-card--dark .park-card__number { color: rgba(232,228,216,0.2); }
 .park-card--dark .park-card__tags li {
@@ -226,10 +242,7 @@ body {
   line-height: 1;
   color: rgba(28,35,24,0.08);
   letter-spacing: -0.04em;
-  transition: color 0.3s;
 }
-
-.park-card:hover .park-card__number { color: var(--accent, var(--green)); opacity: 0.18; }
 
 .park-card__badge {
   font-family: var(--sans);
@@ -250,24 +263,12 @@ body {
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
-
 .park-card--dark .park-card__name { color: #f0ece0; }
 
-.park-card__stars {
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-}
-
-.star {
-  font-size: 1.1rem;
-  color: #d4d0c4;
-}
+.park-card__stars { display: flex; align-items: center; gap: 0.1rem; }
+.star { font-size: 1.1rem; color: #d4d0c4; }
 .star.filled { color: var(--gold); }
-.star.half {
-  position: relative;
-  color: #d4d0c4;
-}
+.star.half { position: relative; color: #d4d0c4; }
 .star.half::before {
   content: '★';
   position: absolute;
@@ -282,7 +283,6 @@ body {
   color: var(--ink-light);
   margin-left: 0.5rem;
 }
-
 .park-card--dark .rating-num { color: rgba(232,228,216,0.55); }
 
 .park-card__review {
@@ -311,47 +311,252 @@ body {
   color: var(--ink-light);
 }
 
+
+/* ══════════════════════════════════════════════════════
+   GALLERY PAGE  (Gallery.html)
+   ══════════════════════════════════════════════════════ */
+
+/* Smaller hero banner for Gallery page */
+.gallery-hero {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 60%, #2a4a2e 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 30%, #1a3320 0%, transparent 55%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #141e10 0%, #0d1409 100%);
+  padding: 4rem 10vw;
+  border-bottom: 3px solid var(--gold);
+}
+
+.gallery-hero__eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  padding: 0.35rem 1rem;
+  border: 1px solid rgba(200,169,81,0.4);
+  border-radius: 100px;
+}
+
+.gallery-hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #f0ece0;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.gallery-hero__title em { font-style: italic; color: var(--gold); }
+
+.gallery-hero__subtitle {
+  font-size: 1rem;
+  color: rgba(240,236,224,0.6);
+  font-weight: 300;
+  max-width: 500px;
+}
+
+/* Grid of gallery photo cards — same layout logic as parks grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2px;
+  padding: 2px;
+  background: rgba(28,35,24,0.08);
+}
+
+.gallery-card {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Coloured top border using each card's accent colour */
+.gallery-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--accent, var(--green));
+  z-index: 1;
+}
+
+.gallery-card--dark { background: var(--bg-dark); }
+.gallery-card--dark .gallery-card__name    { color: #f0ece0; }
+.gallery-card--dark .gallery-card__caption { color: rgba(232,228,216,0.65); }
+.gallery-card--dark .gallery-card__number  { color: rgba(232,228,216,0.07); }
+.gallery-card--dark .gallery-card__copyright {
+  color: rgba(232,228,216,0.4);
+  border-color: rgba(232,228,216,0.1);
+}
+
+.gallery-card--wide { grid-column: span 2; }
+
+/* Single photo */
+.gallery-card__photo {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+/* Wide card: two photos side by side */
+.gallery-card__photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gallery-card__photos .gallery-card__photo {
+  aspect-ratio: 4 / 3;
+}
+
+/* Text area below the photo(s) */
+.gallery-card__info {
+  padding: 1.75rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.gallery-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.gallery-card__number {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(28,35,24,0.07);
+  letter-spacing: -0.04em;
+}
+
+.gallery-card__badge {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent, var(--green));
+  padding: 0.3rem 0.8rem;
+  border: 1.5px solid var(--accent, var(--green));
+  border-radius: 100px;
+}
+
+.gallery-card__name {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.gallery-card__caption {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+}
+
+/* Photo credit/copyright line */
+.gallery-card__copyright {
+  font-size: 0.72rem;
+  color: rgba(28,35,24,0.4);
+  font-style: italic;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(28,35,24,0.1);
+}
+
+/* Full copyright notice section */
+.copyright-section {
+  background: var(--bg-dark);
+  padding: 3rem 10vw;
+  border-top: 3px solid var(--green);
+}
+
+.copyright-section__title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: #f0ece0;
+  margin-bottom: 1.25rem;
+  font-style: italic;
+}
+
+.copyright-section__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.copyright-section__list li {
+  font-size: 0.85rem;
+  color: rgba(240,236,224,0.55);
+  line-height: 1.6;
+  padding-left: 1rem;
+  border-left: 2px solid var(--gold);
+}
+
+.copyright-section__list strong { color: rgba(240,236,224,0.85); font-weight: 500; }
+
+.copyright-section__note {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: rgba(240,236,224,0.35);
+  font-style: italic;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   FOOTER — shared on every page
+   ══════════════════════════════════════════════════════ */
 .site-footer {
   background: var(--bg-dark);
   color: rgba(240,236,224,0.5);
-  padding: 3rem 10vw;
+  padding: 2.5rem 10vw;
   text-align: center;
-  border-top: 3px solid var(--green);
+  border-top: 2px solid rgba(58,99,68,0.4);
 }
 
 .site-footer__brand {
   font-family: var(--serif);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: rgba(240,236,224,0.85);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .site-footer__brand em { color: var(--gold); font-style: italic; }
+.site-footer__note { font-size: 0.82rem; font-weight: 300; }
 
-.site-footer__note {
-  font-size: 0.85rem;
-  font-weight: 300;
-}
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  33%       { transform: translateY(-18px) rotate(6deg); }
-  66%       { transform: translateY(-8px) rotate(-4deg); }
-}
-
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE
+   ══════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  .park-card--wide { grid-column: span 1; }
-  .hero__content { padding: 5rem 1.5rem; }
-  .parks-grid { grid-template-columns: 1fr; }
+  .park-card--wide    { grid-column: span 1; }
+  .gallery-card--wide { grid-column: span 1; }
+  .gallery-card__photos { grid-template-columns: 1fr; }
+  .parks-grid   { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .hero__content { padding: 4rem 1.5rem; }
+  .gallery-hero  { padding: 3rem 1.5rem; }
 }
 
 @media (max-width: 600px) {
-  .hero__title { font-size: clamp(3.2rem, 14vw, 5rem); }
-  .intro-strip { padding: 1.5rem 1.5rem; }
-  .park-card { padding: 2rem 1.5rem; }
+  :root { --nav-height: 56px; }
+  .navbar { gap: 0.4rem; padding: 0 1rem; }
+  .navbar__brand { font-size: 0.9rem; margin-right: 0.5rem; }
+  .navbar__link  { font-size: 0.68rem; padding: 0.35rem 0.75rem; }
+  .hero__title { font-size: clamp(3rem, 14vw, 5rem); }
+  .park-card   { padding: 2rem 1.5rem; }
+  .gallery-card__info { padding: 1.25rem 1.25rem 1.5rem; }
+  .copyright-section { padding: 2rem 1.5rem; }
+  .site-footer { padding: 2rem 1.5rem; }
 }
