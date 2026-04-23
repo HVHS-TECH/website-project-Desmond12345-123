@@ -1,3 +1,10 @@
+/* ══════════════════════════════════════════════════════
+   Wellington Green Escapes — style.css
+   Includes: Navbar, Hero, Parks Grid, Gallery, Footer
+   ══════════════════════════════════════════════════════ */
+
+
+/* ── SECTION 1: CSS VARIABLES ────────────────────────── */
 :root {
   --bg:         #f5f2eb;
   --bg-dark:    #1c2318;
@@ -12,6 +19,7 @@
 }
 
 
+/* ── SECTION 2: RESET ────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -27,9 +35,14 @@ body {
   font-size: 1rem;
   line-height: 1.7;
   overflow-x: hidden;
-  padding-top: var(--nav-height); 
+  padding-top: var(--nav-height); /* push page below fixed navbar */
 }
 
+
+/* ══════════════════════════════════════════════════════
+   NAVBAR — fixed to top of every page
+   Oval/pill shaped buttons sit on the top left
+   ══════════════════════════════════════════════════════ */
 .navbar {
   position: fixed;
   top: 0;
@@ -45,6 +58,7 @@ body {
   border-bottom: 2px solid var(--green);
 }
 
+/* Site name / logo on the far left */
 .navbar__brand {
   font-family: var(--serif);
   font-size: 1.05rem;
@@ -55,6 +69,7 @@ body {
   white-space: nowrap;
 }
 
+/* Each oval pill navigation button */
 .navbar__link {
   display: inline-block;
   font-family: var(--sans);
@@ -66,9 +81,10 @@ body {
   color: rgba(240,236,224,0.75);
   padding: 0.45rem 1.2rem;
   border: 1.5px solid rgba(240,236,224,0.2);
-  border-radius: 100px;   
+  border-radius: 100px;   /* makes the pill/oval shape */
 }
 
+/* Active page button — filled gold */
 .navbar__link--active {
   background: var(--gold);
   color: var(--bg-dark);
@@ -77,6 +93,9 @@ body {
 }
 
 
+/* ══════════════════════════════════════════════════════
+   HERO — big banner on index.html
+   ══════════════════════════════════════════════════════ */
 .hero {
   min-height: calc(100svh - var(--nav-height));
   display: flex;
@@ -142,6 +161,9 @@ body {
 }
 
 
+/* ══════════════════════════════════════════════════════
+   INTRO STRIP
+   ══════════════════════════════════════════════════════ */
 .intro-strip {
   background: var(--green);
   color: rgba(255,255,255,0.88);
@@ -155,6 +177,9 @@ body {
 .intro-strip p { max-width: 75ch; }
 
 
+/* ══════════════════════════════════════════════════════
+   PARK REVIEW CARDS  (index.html)
+   ══════════════════════════════════════════════════════ */
 .parks-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -287,7 +312,11 @@ body {
 }
 
 
+/* ══════════════════════════════════════════════════════
+   GALLERY PAGE  (Gallery.html)
+   ══════════════════════════════════════════════════════ */
 
+/* Smaller hero banner for Gallery page */
 .gallery-hero {
   background-image:
     radial-gradient(ellipse 80% 60% at 20% 60%, #2a4a2e 0%, transparent 60%),
@@ -329,6 +358,7 @@ body {
   max-width: 500px;
 }
 
+/* Grid of gallery photo cards — same layout logic as parks grid */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -345,6 +375,7 @@ body {
   overflow: hidden;
 }
 
+/* Coloured top border using each card's accent colour */
 .gallery-card::before {
   content: '';
   position: absolute;
@@ -365,6 +396,7 @@ body {
 
 .gallery-card--wide { grid-column: span 2; }
 
+/* Single photo */
 .gallery-card__photo {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -372,6 +404,7 @@ body {
   display: block;
 }
 
+/* Wide card: two photos side by side */
 .gallery-card__photos {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -381,6 +414,7 @@ body {
   aspect-ratio: 4 / 3;
 }
 
+/* Text area below the photo(s) */
 .gallery-card__info {
   padding: 1.75rem 2rem 2rem;
   display: flex;
@@ -440,6 +474,7 @@ body {
   border-top: 1px solid rgba(28,35,24,0.1);
 }
 
+/* Full copyright notice section */
 .copyright-section {
   background: var(--bg-dark);
   padding: 3rem 10vw;
@@ -479,7 +514,9 @@ body {
 }
 
 
-
+/* ══════════════════════════════════════════════════════
+   FOOTER — shared on every page
+   ══════════════════════════════════════════════════════ */
 .site-footer {
   background: var(--bg-dark);
   color: rgba(240,236,224,0.5);
@@ -497,6 +534,176 @@ body {
 
 .site-footer__brand em { color: var(--gold); font-style: italic; }
 .site-footer__note { font-size: 0.82rem; font-weight: 300; }
+
+
+/* ══════════════════════════════════════════════════════
+   ANIMATIONS & TRANSITIONS
+   ══════════════════════════════════════════════════════ */
+
+/* Hero content fades and rises up on page load */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Leaves gently float up and down forever */
+@keyframes float {
+  0%,  100% { transform: translateY(0)    rotate(0deg);  }
+  33%        { transform: translateY(-18px) rotate(6deg);  }
+  66%        { transform: translateY(-8px)  rotate(-4deg); }
+}
+
+/* Navbar links slide down from above on load */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cards fade up into view one after another */
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__content {
+  animation: fadeUp 1s ease both;
+}
+
+.navbar__brand {
+  animation: slideDown 0.6s ease both;
+  animation-delay: 0.1s;
+}
+
+.navbar__link:nth-child(2) { animation: slideDown 0.6s ease both; animation-delay: 0.2s; }
+.navbar__link:nth-child(3) { animation: slideDown 0.6s ease both; animation-delay: 0.3s; }
+.navbar__link:nth-child(4) { animation: slideDown 0.6s ease both; animation-delay: 0.4s; }
+
+.hero__leaves {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.leaf {
+  position: absolute;
+  opacity: 0.18;
+  animation: float 8s ease-in-out infinite;
+}
+
+.leaf--1 { top: 12%; right: 15%; font-size: clamp(2rem, 4vw, 4.5rem); animation-delay: 0s;   }
+.leaf--2 { top: 55%; right: 8%;  font-size: clamp(1.2rem, 2.5vw, 3rem); animation-delay: 1.5s; }
+.leaf--3 { top: 30%; right: 35%; opacity: 0.10; animation-delay: 3s;   }
+.leaf--4 { bottom: 15%; right: 25%; animation-delay: 0.8s; }
+.leaf--5 { top: 70%; right: 50%; opacity: 0.08; animation-delay: 2.2s; }
+
+.park-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.park-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(28,35,24,0.16);
+  z-index: 1;
+}
+
+.park-card::before {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.park-card:hover::before {
+  transform: scaleX(1);
+}
+
+.gallery-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(28,35,24,0.16);
+  z-index: 1;
+}
+
+.gallery-card__photo {
+  transition: transform 0.5s ease;
+}
+
+.gallery-card:hover .gallery-card__photo {
+  transform: scale(1.03);
+}
+
+.hero__cta {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero__cta:hover {
+  background: #dbbf62;
+  transform: translateY(-2px);
+}
+
+.navbar__link {
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.navbar__link:hover {
+  background: rgba(200,169,81,0.15);
+  border-color: rgba(200,169,81,0.5);
+  color: var(--gold);
+}
+
+.park-card__badge {
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.park-card:hover .park-card__badge {
+  background: var(--accent, var(--green));
+  color: #fff;
+}
+
+.gallery-card__badge {
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.gallery-card:hover .gallery-card__badge {
+  background: var(--accent, var(--green));
+  color: #fff;
+}
+
+.parks-grid .park-card:nth-child(1) { animation: cardReveal 0.7s ease both; animation-delay: 0.1s; }
+.parks-grid .park-card:nth-child(2) { animation: cardReveal 0.7s ease both; animation-delay: 0.2s; }
+.parks-grid .park-card:nth-child(3) { animation: cardReveal 0.7s ease both; animation-delay: 0.3s; }
+.parks-grid .park-card:nth-child(4) { animation: cardReveal 0.7s ease both; animation-delay: 0.4s; }
+.parks-grid .park-card:nth-child(5) { animation: cardReveal 0.7s ease both; animation-delay: 0.5s; }
+
+.gallery-grid .gallery-card:nth-child(1) { animation: cardReveal 0.7s ease both; animation-delay: 0.1s; }
+.gallery-grid .gallery-card:nth-child(2) { animation: cardReveal 0.7s ease both; animation-delay: 0.2s; }
+.gallery-grid .gallery-card:nth-child(3) { animation: cardReveal 0.7s ease both; animation-delay: 0.3s; }
+.gallery-grid .gallery-card:nth-child(4) { animation: cardReveal 0.7s ease both; animation-delay: 0.4s; }
+.gallery-grid .gallery-card:nth-child(5) { animation: cardReveal 0.7s ease both; animation-delay: 0.5s; }
+.gallery-grid .gallery-card:nth-child(6) { animation: cardReveal 0.7s ease both; animation-delay: 0.6s; }
+.gallery-grid .gallery-card:nth-child(7) { animation: cardReveal 0.7s ease both; animation-delay: 0.7s; }
+.gallery-grid .gallery-card:nth-child(8) { animation: cardReveal 0.7s ease both; animation-delay: 0.8s; }
 
 
 @media (max-width: 900px) {
